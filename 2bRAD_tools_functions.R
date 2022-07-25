@@ -18,6 +18,7 @@ md5sum.check<-function(name=prefix, RawData=path.to.RawData,
 #### Step2: decompress fastq.gz ####
 gunzip.fastq.gz<-function(RawData=path.to.RawData){
   library(R.utils)
+  setwd(RawData)
   list.of.files<-list.files(RawData)
   files<-paste(RawData,list.of.files[grep(".fastq.gz",list.of.files)],sep = "/")
   lapply(files,gunzip)
@@ -30,7 +31,7 @@ write.demultiplex.sh<-function(name=prefix,RawData=path.to.RawData,
   decompressed_files<-list.of.files[grep(".fastq",list.of.files)]
   demultiplex.sh<-c("#!/bin/bash",
                     paste("cd ", RawData,sep = ""),
-                    paste("cp", Scripts, "trim2bRAD_2barcodes_noAdap.pl ." ,sep=" "),
+                    paste("cp", Scripts, "/trim2bRAD_2barcodes_noAdap.pl ." ,sep=" "),
                     "chmod +x trim2bRAD_2barcodes_noAdap.pl",
                     paste("perl trim2bRAD_2barcodes_noAdap.pl fastq=",
                           decompressed_files,
