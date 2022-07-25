@@ -10,4 +10,4 @@ This function will decompress fastq.qz files to fastq files
 This function will write  shell script that can be executed for demultiplexing samples, for running the shell script one must have the ... file in in the directory specified in path.to.Scripts directory
 
 ## write.fastq.sh()
-This function will write a shell script for executing fastx_tools to rename fastq files based on the positions provided in a plate_map.csv, this will also perform a quality filter
+This function will write a shell script for executing fastx_tools. Such a bash script will rename fastq files with names provided in a plate_map.csv depending on the row/colum possition (this asummes that adaptors used are the same as in https://github.com/Kenizzer/2bRAD-Edwards-Lab), the bash script will also perform a quality filter.
